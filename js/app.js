@@ -6,6 +6,7 @@ const spaces = [null, null, null, null, null, null, null, null, null];
 const O_TEXT = "O";
 const X_TEXT = "X";
 let currentPlayer = O_TEXT;
+let count = 0;
 
 const drawBoard = () => {
   boxes.forEach((box, index) => {
@@ -33,11 +34,15 @@ function boxClicked(e) {
   if (!spaces[id]) {
     spaces[id] = currentPlayer;
     e.target.innerText = currentPlayer;
+    count ++;
     if (hasPlayerWon(currentPlayer)) {
       playText.innerHTML = `${currentPlayer} wins!!`;
       return;
     }
     currentPlayer = currentPlayer === O_TEXT ? X_TEXT : O_TEXT;
+    if(count ===9){
+        playText.innerHTML = `Draw!!`;
+    }
   }
 }
 
